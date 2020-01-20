@@ -1,0 +1,213 @@
+/* default */
+.btn {
+  display: inline-block;
+  min-width: 42px;
+  border: 1px solid #333;
+  background: #fff;
+  padding: 5px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  cursor: pointer;
+}
+span.btn {
+  cursor: no-drop;
+}
+.btn > svg {
+  margin-right: 4px;
+  font-size: 13px;
+}
+
+/* style */
+.btn-default {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  line-height: 1.2;
+}
+.btn-dark {
+  background: #333;
+  color: #fff;
+}
+.btn-submit {
+  background: #2196f3;
+  border-color: #2196f3;
+  color: #fff;
+}
+
+/* size */
+.btn-middle {
+  padding: 8px 40px;
+}
+
+/* shape */
+.btn-radius {
+  border-radius: 17px;
+}
+
+/* effect */
+.btn-hover.normal {
+  transition: all 0.15s ease-in-out;
+}
+.btn-hover:hover {
+  background: #666;
+  border-color: #666;
+  color: #fff;
+}
+
+/* pagination */
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  border-radius: 4px;
+}
+.pagination .page-item {
+  display: inline;
+}
+.pagination .page-item a {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  color: #337ab7;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-left: -1px;
+  font-size: 13px;
+}
+.pagination .page-item.disabled a {
+  cursor: no-drop;
+}
+.pagination .page-item.active-class a {
+  z-index: 3;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+  cursor: default;
+}
+
+/* table */
+.board_view {
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  font-size: 14px;
+}
+.board_view thead tr th,
+.board_view tbody tr td {
+  padding: 8px;
+  text-align: center;
+}
+.board_view thead tr th {
+  border-bottom: 2px solid #ddd;
+  font-weight: 500;
+}
+.board_view tbody tr td {
+  border-bottom: 1px solid #ccc;
+}
+.board_view tbody tr:nth-child(odd) td {
+  background: #f8f8f8;
+}
+.board_view tbody tr td.title {
+  text-align: left;
+}
+.board_view tbody tr td.label {
+  padding: 5px 0;
+}
+.board_view tbody tr td.label span {
+  display: inline-block;
+  min-width: 48px;
+  min-height: 22px;
+  padding: 4px 8px;
+  background: #673ab7;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* popup */
+.popup_wrap {
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  overflow-y: auto;
+}
+.popup {
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  width: 90%;
+  max-width: 420px;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 2px 5px 5px rgba(45, 64, 114, 0.5);
+}
+.popup > h1 {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+.popup_content {
+  padding: 15px 10px;
+}
+.popup_content .input_area {
+  position: relative;
+}
+.popup_content .input_area + .input_area {
+  margin-top: 10px;
+}
+.popup_content .input_area label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+.popup_content .input_area input[type="text"],
+.popup_content .input_area select {
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 34px;
+  font-size: 14px;
+}
+.popup_content .input_area input[type="text"] {
+  width: 100%;
+}
+.popup_content .input_area textarea {
+  width: 100%;
+  padding: 7px 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.popup_content .input_area img.thumbnail {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+.popup_buttons {
+  padding: 15px 0 20px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+.popup_buttons > button {
+  display: inline-block;
+  margin: 0 30px;
+  background: none;
+  border: 0;
+  font-size: 14px;
+}
+.popup_buttons > button + button {
+  color: #2196f3;
+}
