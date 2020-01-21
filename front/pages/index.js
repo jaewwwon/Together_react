@@ -14,8 +14,6 @@ import "slick-carousel/slick/slick.css";
 const Main = styled.div`
   position: relative;
   padding: 122px 15px;
-  /* background: url("bg_main.jpg") no-repeat 50% 50%;
-  background-size: cover; */
   text-align: center;
 
   & > img {

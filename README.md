@@ -41,3 +41,4 @@ Together는 같은 관심 분야를 갖고 있는 사람들이 모여서 활동 
 - [React Helmet](https://github.com/nfl/react-helmet)
 - [Styled Components](https://github.com/styled-components/styled-components)
 - [Bundle Analyzer](https://github.com/zeit/next.js/tree/canary/packages/next-bundle-analyzer)
+- [Compression Webpack Plugin](https://github.com/webpack-contrib/compression-webpack-plugin)
