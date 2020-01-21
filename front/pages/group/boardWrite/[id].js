@@ -35,7 +35,7 @@ const Container = styled.div`
     border: 1px solid #ccc;
     border-radius: 4px;
   }
-  .ck-content > p {
+  .ck-content {
     min-height: 340px;
   }
 `;
