@@ -113,6 +113,7 @@ const BoardView = () => {
     boardInfo,
     boardInfo: { Comments: comments }
   } = useSelector(state => state.group);
+  const { userInfo } = useSelector(state => state.user);
   const [comment, setComment] = useState("");
 
   useEffect(() => {
@@ -186,26 +187,29 @@ const BoardView = () => {
 
   return (
     <Container>
-      <ButtonWrap>
-        <Link
-          href="/group/boardModify/[id]"
-          as={`/group/boardModify/${router.query.id}`}
-        >
-          <a className="btn  btn-radius">
-            <FontAwesomeIcon icon={faEdit} />
-            게시글 수정
-          </a>
-        </Link>
-        <button
-          className="btn btn-dark btn-radius"
-          type="button"
-          onClick={onBoardRemove}
-        >
-          {" "}
-          <FontAwesomeIcon icon={faTrashAlt} />
-          게시글 삭제
-        </button>
-      </ButtonWrap>
+      {userInfo && boardInfo.User && userInfo.id === boardInfo.User.id && (
+        <ButtonWrap>
+          <Link
+            href="/group/boardModify/[id]"
+            as={`/group/boardModify/${router.query.id}`}
+          >
+            <a className="btn  btn-radius">
+              <FontAwesomeIcon icon={faEdit} />
+              게시글 수정
+            </a>
+          </Link>
+          <button
+            className="btn btn-dark btn-radius"
+            type="button"
+            onClick={onBoardRemove}
+          >
+            {" "}
+            <FontAwesomeIcon icon={faTrashAlt} />
+            게시글 삭제
+          </button>
+        </ButtonWrap>
+      )}
+
       <BoardInfo>
         <h2 className="title">
           [{boardInfo.category}] {boardInfo.title}
