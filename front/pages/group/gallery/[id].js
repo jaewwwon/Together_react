@@ -71,6 +71,10 @@ const PhotoControler = styled.div`
     margin-left: 3px;
   }
 `;
+const MemberNotice = styled.div`
+  padding: 3em 0;
+  text-align: center;
+`;
 
 const Gallery = () => {
   const { userInfo } = useSelector(state => state.user);
@@ -95,11 +99,11 @@ const Gallery = () => {
       groupDetail.User &&
       groupDetail.User.id == userInfo.id);
 
-  if (!MemberState) {
-    alert("모임 멤버만 이용가능합니다.");
-    Router.back();
-    return null;
-  }
+  // if (!MemberState) {
+  //   alert("모임 멤버만 이용가능합니다.");
+  //   Router.push(`/group/intro/${router.query.id}`);
+  //   return null;
+  // }
 
   useEffect(() => {
     dispatch({
@@ -181,83 +185,94 @@ const Gallery = () => {
   return (
     <Container>
       <GroupHead />
-      {groupDetail && groupDetail.User && userInfo.id === groupDetail.User.id && (
-        <ButtonWrap>
-          <input
-            type="file"
-            multiple
-            hidden
-            ref={imageInput}
-            onChange={onChangeImages}
-          />
-          <button
-            className="btn btn-radius"
-            type="button"
-            onClick={onClickImageUpload}
-          >
-            <FontAwesomeIcon icon={faUpload} />
-            사진 등록
-          </button>
-        </ButtonWrap>
-      )}
-      <GalleryList>
-        {galleryList &&
-          galleryList.map((image, index) => (
-            <li key={image.id}>
-              <button
-                className="imageButton"
-                type="button"
-                onClick={onImageZoom}
-                value={index}
-              >
-                <img
-                  src={`http://localhost:8080/${image.imagePath}`}
-                  alt={image.imagePath}
+      {MemberState ? (
+        <>
+          {groupDetail &&
+            groupDetail.User &&
+            userInfo.id === groupDetail.User.id && (
+              <ButtonWrap>
+                <input
+                  type="file"
+                  multiple
+                  hidden
+                  ref={imageInput}
+                  onChange={onChangeImages}
                 />
-              </button>
-              <input
-                type="file"
-                multiple
-                hidden
-                ref={imageModifyInput}
-                onChange={onChangeImageModify}
-              />
-              {userInfo && groupDetail && userInfo.id === groupDetail.id && (
-                <PhotoControler>
+                <button
+                  className="btn btn-radius"
+                  type="button"
+                  onClick={onClickImageUpload}
+                >
+                  <FontAwesomeIcon icon={faUpload} />
+                  사진 등록
+                </button>
+              </ButtonWrap>
+            )}
+          <GalleryList>
+            {galleryList &&
+              galleryList.map((image, index) => (
+                <li key={image.id}>
                   <button
-                    className="btn btn-radius"
+                    className="imageButton"
                     type="button"
-                    onClick={onClickImageModify(image.id)}
+                    onClick={onImageZoom}
+                    value={index}
                   >
-                    수정
+                    <img
+                      src={`http://localhost:8080/${image.imagePath}`}
+                      alt={image.imagePath}
+                    />
                   </button>
-                  <button
-                    className="btn btn-radius btn-dark"
-                    type="button"
-                    onClick={onRemoveImage(image.id)}
-                  >
-                    삭제
-                  </button>
-                </PhotoControler>
-              )}
-            </li>
-          ))}
-      </GalleryList>
-      {hasMoreItem && (
-        <button
-          className="btn button_more"
-          type="button"
-          onClick={loadMoreImages}
-        >
-          더보기
-        </button>
-      )}
-      {showImageZoom && (
-        <ImageZoom
-          images={galleryList}
-          imageIdx={imageIdx}
-          onCloseImageZoom={onCloseImageZoom}
-        />
+                  <input
+                    type="file"
+                    multiple
+                    hidden
+                    ref={imageModifyInput}
+                    onChange={onChangeImageModify}
+                  />
+                  {userInfo &&
+                    groupDetail &&
+                    groupDetail.User &&
+                    userInfo.id === groupDetail.User.id && (
+                      <PhotoControler>
+                        <button
+                          className="btn btn-radius"
+                          type="button"
+                          onClick={onClickImageModify(image.id)}
+                        >
+                          수정
+                        </button>
+                        <button
+                          className="btn btn-radius btn-dark"
+                          type="button"
+                          onClick={onRemoveImage(image.id)}
+                        >
+                          삭제
+                        </button>
+                      </PhotoControler>
+                    )}
+                </li>
+              ))}
+          </GalleryList>
+          {hasMoreItem && (
+            <button
+              className="btn button_more"
+              type="button"
+              onClick={loadMoreImages}
+            >
+              더보기
+            </button>
+          )}
+          {showImageZoom && (
+            <ImageZoom
+              images={galleryList}
+              imageIdx={imageIdx}
+              onCloseImageZoom={onCloseImageZoom}
+            />
+          )}
+        </>
+      ) : (
+        <MemberNotice>모임 멤버만 이용가능합니다.</MemberNotice>
       )}
     </Container>
   );

@@ -92,7 +92,6 @@ const SearchSchdules = () => {
       document.documentElement.scrollHeight - 300
     ) {
       if (searchSchedules[0] && hasMoreItem) {
-        console.log("has상태값", hasMoreItem);
         dispatch({
           type: LOAD_SEARCH_SCHEDULES_REQUEST,
           lastDate: searchSchedules[searchSchedules.length - 1].date,
@@ -101,8 +100,6 @@ const SearchSchdules = () => {
             keyword
           }
         });
-      } else {
-        console.log("has상태값", hasMoreItem);
       }
     }
   }, [searchSchedules.length, hasMoreItem, groupCategory, keyword]);
@@ -184,8 +181,7 @@ const SearchSchdules = () => {
 };
 
 SearchSchdules.getInitialProps = async context => {
-  console.log(Object.keys(context));
-  console.log("has상태값", hasMoreItem);
+  // console.log(Object.keys(context));
   context.store.dispatch({
     type: LOAD_SEARCH_SCHEDULES_REQUEST
   });

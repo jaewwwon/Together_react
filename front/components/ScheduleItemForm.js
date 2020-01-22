@@ -328,7 +328,10 @@ const ScheduleItemFrom = ({ schedule }) => {
       groupDetail.User &&
       groupDetail.Members &&
       groupDetail.Members.find(member => userInfo.id == member.id)) ||
-    (userInfo && groupDetail && groupDetail.id === userInfo.id);
+    (userInfo &&
+      groupDetail &&
+      groupDetail.User &&
+      groupDetail.User.id === userInfo.id);
 
   // 일정 참석 멤버 팝업창 열기
   const onMemberPopup = useCallback(e => {
@@ -368,8 +371,7 @@ const ScheduleItemFrom = ({ schedule }) => {
           </p>
           {memberState ? (
             dayCounter(schedule.date) !== "종료" ? (
-              userInfo &&
-              (schedule.Attends.findIndex(v => v.id == userInfo.id) === -1 ? (
+              schedule.Attends.findIndex(v => v.id == userInfo.id) === -1 ? (
                 <button
                   className="btn btn-hover normal"
                   type="button"
@@ -387,7 +389,7 @@ const ScheduleItemFrom = ({ schedule }) => {
                 >
                   참석취소
                 </button>
-              ))
+              )
             ) : (
               <CloseButton className="btn btn-dark">마감</CloseButton>
             )
@@ -395,7 +397,7 @@ const ScheduleItemFrom = ({ schedule }) => {
         </AttendInfo>
       </Content>
 
-      {userInfo && userInfo.id === groupDetail.id && (
+      {groupDetail.User && userInfo.id === groupDetail.User.id && (
         <ButtonWrap>
           <button type="button" onClick={onDropDownMenu}>
             <FontAwesomeIcon icon={faEllipsisH} />

@@ -109,18 +109,21 @@ const Schedule = () => {
   return (
     <Container>
       <GroupHead />
-      {groupDetail && groupDetail.User && userInfo.id === groupDetail.User.id && (
-        <ButtonWrap>
-          <button
-            className="btn btn-radius"
-            type="button"
-            onClick={onSchedulePopup}
-          >
-            <FontAwesomeIcon icon={faCalendarAlt} />
-            일정 등록
-          </button>
-        </ButtonWrap>
-      )}
+      {userInfo &&
+        groupDetail &&
+        groupDetail.User &&
+        userInfo.id === groupDetail.User.id && (
+          <ButtonWrap>
+            <button
+              className="btn btn-radius"
+              type="button"
+              onClick={onSchedulePopup}
+            >
+              <FontAwesomeIcon icon={faCalendarAlt} />
+              일정 등록
+            </button>
+          </ButtonWrap>
+        )}
 
       <ol>
         {scheduleList &&

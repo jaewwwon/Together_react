@@ -56,6 +56,10 @@ const PaginationWrap = styled.div`
   margin-top: 25px;
   text-align: center;
 `;
+const MemberNotice = styled.div`
+  padding: 3em 0;
+  text-align: center;
+`;
 
 const Board = () => {
   const router = useRouter();
@@ -76,11 +80,11 @@ const Board = () => {
       groupDetail.Members.find(member => id == member.id)) ||
     (groupDetail && groupDetail.User && groupDetail.User.id == id);
 
-  if (!MemberState) {
-    alert("모임 멤버만 이용가능합니다.");
-    Router.back();
-    return null;
-  }
+  // if (!MemberState) {
+  //   alert("모임 멤버만 이용가능합니다.");
+  //   Router.push(`/group/intro/${router.query.id}`);
+  //   return null;
+  // }
 
   const pageLimit = 10; // 페이지에 보여줄 게시글 최대 수
 
@@ -134,100 +138,108 @@ const Board = () => {
   return (
     <Container>
       <GroupHead />
-      <SearchFrom>
-        <form onSubmit={onSubmitSearch}>
-          <select
-            name=""
-            id="category"
-            value={category}
-            onChange={onChangeCategory}
-          >
-            <option value="all">전체</option>
-            <option value="공지사항">공지사항</option>
-            <option value="가입인사">가입인사</option>
-            <option value="자유글">자유글</option>
-            <option value="건의사항">건의사항</option>
-          </select>
-          <input type="text" value={keyword} onChange={onChangeKeyword} />
-          <button type="submit" className="btn btn-dark">
-            검색
-          </button>
-        </form>
+      {MemberState ? (
+        <>
+          <SearchFrom>
+            <form onSubmit={onSubmitSearch}>
+              <select
+                name=""
+                id="category"
+                value={category}
+                onChange={onChangeCategory}
+              >
+                <option value="all">전체</option>
+                <option value="공지사항">공지사항</option>
+                <option value="가입인사">가입인사</option>
+                <option value="자유글">자유글</option>
+                <option value="건의사항">건의사항</option>
+              </select>
+              <input type="text" value={keyword} onChange={onChangeKeyword} />
+              <button type="submit" className="btn btn-dark">
+                검색
+              </button>
+            </form>
 
-        <Link
-          href="/group/boardWrite/[id]"
-          as={`/group/boardWrite/${router.query.id}`}
-        >
-          <a className="btn btn-radius">
-            <FontAwesomeIcon icon={faPencilAlt} />
-            글작성
-          </a>
-        </Link>
-      </SearchFrom>
-      <TableWrap>
-        <table className="board_view">
-          <colgroup>
-            <col width="60" />
-            <col width="100" />
-            <col width="" />
-            <col width="80" />
-            <col width="120" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>말머리</th>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>날짜</th>
-            </tr>
-          </thead>
-          <tbody>
-            {boardList.rows &&
-              boardList.rows.map((item, index) => (
-                <tr key={item.id}>
-                  <td>
-                    {boardPage
-                      ? boardList.count - (boardPage - 1) * pageLimit - index
-                      : boardList.count - index}
-                  </td>
-                  <td>{item.category}</td>
-                  <td className="title">
-                    <Link
-                      href="/group/boardView/[id]"
-                      as={`/group/boardView/${item.id}`}
-                    >
-                      <a>{item.title}</a>
-                    </Link>
-                  </td>
-                  <td>{item.User.userNickname}</td>
-                  <td>
-                    {moment(item.createdAt).format("YYYY.MM.DD") ===
-                    moment().format("YYYY.MM.DD")
-                      ? moment(item.createdAt).format("HH:mm")
-                      : moment(item.createdAt).format("YYYY.MM.DD")}
-                  </td>
+            <Link
+              href="/group/boardWrite/[id]"
+              as={`/group/boardWrite/${router.query.id}`}
+            >
+              <a className="btn btn-radius">
+                <FontAwesomeIcon icon={faPencilAlt} />
+                글작성
+              </a>
+            </Link>
+          </SearchFrom>
+          <TableWrap>
+            <table className="board_view">
+              <colgroup>
+                <col width="60" />
+                <col width="100" />
+                <col width="" />
+                <col width="80" />
+                <col width="120" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>말머리</th>
+                  <th>제목</th>
+                  <th>작성자</th>
+                  <th>날짜</th>
                 </tr>
-              ))}
-          </tbody>
-        </table>
-      </TableWrap>
-      <PaginationWrap>
-        <Pagination
-          // hideDisabled
-          firstPageText="&laquo;"
-          prevPageText="&lt;"
-          nextPageText="&gt;"
-          lastPageText="&raquo;"
-          itemClass="page-item"
-          activeClass="active-class"
-          activePage={activePage}
-          itemsCountPerPage={pageLimit} // 페이지당 항목 수
-          totalItemsCount={boardList.count} // 총 게시글 수
-          pageRangeDisplayed={5} // 페이징 번호 블럭 수 ex) [1][2][3][4][5]
-          onChange={handlePageChange}
-        />
-      </PaginationWrap>
+              </thead>
+              <tbody>
+                {boardList.rows &&
+                  boardList.rows.map((item, index) => (
+                    <tr key={item.id}>
+                      <td>
+                        {boardPage
+                          ? boardList.count -
+                            (boardPage - 1) * pageLimit -
+                            index
+                          : boardList.count - index}
+                      </td>
+                      <td>{item.category}</td>
+                      <td className="title">
+                        <Link
+                          href="/group/boardView/[id]"
+                          as={`/group/boardView/${item.id}`}
+                        >
+                          <a>{item.title}</a>
+                        </Link>
+                      </td>
+                      <td>{item.User.userNickname}</td>
+                      <td>
+                        {moment(item.createdAt).format("YYYY.MM.DD") ===
+                        moment().format("YYYY.MM.DD")
+                          ? moment(item.createdAt).format("HH:mm")
+                          : moment(item.createdAt).format("YYYY.MM.DD")}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </TableWrap>
+          <PaginationWrap>
+            <Pagination
+              // hideDisabled
+              firstPageText="&laquo;"
+              prevPageText="&lt;"
+              nextPageText="&gt;"
+              lastPageText="&raquo;"
+              itemClass="page-item"
+              activeClass="active-class"
+              activePage={activePage}
+              itemsCountPerPage={pageLimit} // 페이지당 항목 수
+              totalItemsCount={boardList.count} // 총 게시글 수
+              pageRangeDisplayed={5} // 페이징 번호 블럭 수 ex) [1][2][3][4][5]
+              onChange={handlePageChange}
+            />
+          </PaginationWrap>
+        </>
+      ) : (
+        <MemberNotice>모임 멤버만 이용가능합니다.</MemberNotice>
+      )}
     </Container>
   );
 };
@@ -235,15 +247,6 @@ const Board = () => {
 Board.getInitialProps = async context => {
   // console.log(Object.keys(context));
   // const state = context.store.getState();
-  // const pageLimit = 10;
-  // context.store.dispatch(
-  //   {
-  //     type: LOAD_BOARD_LIST_REQUEST,
-  //     data: { groupId: context.query.id },
-  //     limit: pageLimit
-  //   },
-  //   [state.group.boardList.count]
-  // );
 };
 
 export default Board;

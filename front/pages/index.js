@@ -76,11 +76,11 @@ const Section = styled.div`
   }
   .slick-prev {
     left: 0;
-    background-image: url("btn_left.png");
+    background-image: url("http://localhost:3000/btn_left.png");
   }
   .slick-next {
     right: 0;
-    background-image: url("btn_right.png");
+    background-image: url("http://localhost:3000/btn_right.png");
   }
   .slick-dots {
     position: absolute;
