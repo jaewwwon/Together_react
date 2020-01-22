@@ -185,10 +185,8 @@ const Manage = () => {
   }, []);
 
   return (
-    <Section>
-      <Helmet>
-        <title>모임 관리 | Together</title>
-      </Helmet>
+    <Section
+      <Helmet title="모임 관리 | Together" />
       <Lnb path={router.pathname} />
       <Content>
         <h3>모임관리</h3>

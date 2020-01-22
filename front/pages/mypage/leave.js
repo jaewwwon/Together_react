@@ -125,9 +125,7 @@ const Leave = () => {
 
   return (
     <Section>
-      <Helmet>
-        <title>회원탈퇴 | Together</title>
-      </Helmet>
+      <Helmet title="회원탈퇴 | Together" />
       <Lnb path={router.pathname} />
       <Content>
         <h3>회원탈퇴</h3>

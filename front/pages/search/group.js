@@ -128,10 +128,7 @@ const SearchGroups = () => {
 
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>모임 검색 | Together</title>
-      </Helmet>
+      <Helmet itle="모임 검색 | Together" />
       <SearchFrom>
         <Container>
           <h2>나와 같은 관심사를 갖고있는 모임을 찾아보세요.</h2>

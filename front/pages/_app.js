@@ -12,59 +12,56 @@ import AppLayout from "../components/AppLayout";
 import { LOAD_USER_REQUEST } from "../reducers/user";
 import { LOAD_GROUP_INTRO_REQUEST } from "../reducers/group";
 import Helmet from "react-helmet";
-import { Container } from "next/app";
 
 const App = ({ Component, store, pageProps }) => {
   return (
-    <Container>
-      <Provider store={store}>
-        <Helmet
-          title="Together"
-          htmlAttributes={{ lang: "ko" }}
-          meta={[
-            {
-              charset: "UTF-8"
-            },
-            {
-              name: "viewport",
-              content:
-                "width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes,viewport-fit=cover"
-            },
-            {
-              "http-equiv": "X-UA-Compatible",
-              content: "IE=edge"
-            },
-            {
-              name: "description",
-              content:
-                "같은 관심사를 함께하는 즐거움! 공통 관심사를 갖고 있는 사람들을 쉽고 빠르게 찾아보세요."
-            },
-            {
-              name: "og:title",
-              content: "Together"
-            },
-            {
-              name: "og:description",
-              content:
-                "같은 관심사를 함께하는 즐거움! 공통 관심사를 갖고 있는 사람들을 쉽고 빠르게 찾아보세요."
-            },
-            {
-              property: "og:type",
-              content: "website"
-            }
-          ]}
-          link={[
-            {
-              rel: "shortcut icon",
-              href: "/favicon.ico"
-            }
-          ]}
-        />
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
-      </Provider>
-    </Container>
+    <Provider store={store}>
+      <Helmet
+        title="Together"
+        htmlAttributes={{ lang: "ko" }}
+        meta={[
+          {
+            charset: "UTF-8"
+          },
+          {
+            name: "viewport",
+            content:
+              "width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes,viewport-fit=cover"
+          },
+          {
+            "http-equiv": "X-UA-Compatible",
+            content: "IE=edge"
+          },
+          {
+            name: "description",
+            content:
+              "같은 관심사를 함께하는 즐거움! 공통 관심사를 갖고 있는 사람들을 쉽고 빠르게 찾아보세요."
+          },
+          {
+            name: "og:title",
+            content: "Together"
+          },
+          {
+            name: "og:description",
+            content:
+              "같은 관심사를 함께하는 즐거움! 공통 관심사를 갖고 있는 사람들을 쉽고 빠르게 찾아보세요."
+          },
+          {
+            property: "og:type",
+            content: "website"
+          }
+        ]}
+        link={[
+          {
+            rel: "shortcut icon",
+            href: "/favicon.ico"
+          }
+        ]}
+      />
+      <AppLayout>
+        <Component {...pageProps} />
+      </AppLayout>
+    </Provider>
   );
 };
 

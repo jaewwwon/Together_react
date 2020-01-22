@@ -178,9 +178,7 @@ const Profile = () => {
 
   return (
     <Section>
-      <Helmet>
-        <title>내 프로필 | Together</title>
-      </Helmet>
+      <Helmet title="내 프로필 | Together" />
       <Lnb path={router.pathname} />
       <Content>
         <h3>내 프로필</h3>
