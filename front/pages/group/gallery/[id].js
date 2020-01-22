@@ -181,7 +181,7 @@ const Gallery = () => {
   return (
     <Container>
       <GroupHead />
-      {userInfo && groupDetail && userInfo.id === groupDetail.id && (
+      {groupDetail && groupDetail.User && userInfo.id === groupDetail.User.id && (
         <ButtonWrap>
           <input
             type="file"

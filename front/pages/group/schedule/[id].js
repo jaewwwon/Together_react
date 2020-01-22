@@ -109,7 +109,7 @@ const Schedule = () => {
   return (
     <Container>
       <GroupHead />
-      {userInfo && groupDetail && userInfo.id === groupDetail.id && (
+      {groupDetail && groupDetail.User && userInfo.id === groupDetail.User.id && (
         <ButtonWrap>
           <button
             className="btn btn-radius"
